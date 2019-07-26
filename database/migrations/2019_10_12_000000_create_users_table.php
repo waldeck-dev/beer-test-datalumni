@@ -17,12 +17,21 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('favourite_type')->nullable();
-            $table->string('favourite_style')->nullable();
+            $table->unsignedBigInteger('favourite_type')->nullable();
+            $table->unsignedBigInteger('favourite_style')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('favourite_type')
+                  ->references('id')->on('beer_types')
+                  ->onDelete('cascade');
+            $table->foreign('favourite_style')
+                  ->references('id')->on('beer_styles')
+                  ->onDelete('cascade');
         });
     }
 

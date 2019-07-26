@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use App\User;
+use App\BeerType;
+use App\BeerStyle;
+
 
 class UserController extends Controller
 {
@@ -13,7 +17,11 @@ class UserController extends Controller
     public function edit()
     {
         $user = $this->getUser();
-        return view('user.profile')->with('user', $user);
+        return view('user.profile')->with([
+            'user' => $user,
+            'types' => BeerType::all(),
+            'styles' => BeerStyle::all(),
+        ]);
     }
 
     // Update user profile in storage.
@@ -26,6 +34,8 @@ class UserController extends Controller
         $user = $this->getUser();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->favourite_type = $request->input('beer-type');
+        $user->favourite_style = $request->input('beer-style');
         $user->save();
 
         return redirect()->route('profile');

@@ -22,6 +22,36 @@
                 placeholder="Your email address"
                 class="form-control">
         </div>
+        <div class="form-group">
+            <label for="beer-type">Your favourite Beer type</label>
+            <select
+                name="beer-type" id="beer-type"
+                class="custom-select">
+                <option selected disabled>Choose your favourite beer type</option>
+                @foreach($types as $type)
+                    <option
+                        value="{{ $type->id }}"
+                        {{ $type->id == $user->favourite_type ? 'selected' : '' }}>
+                        {{ $type->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="beer-style">Your favourite Beer style</label>
+            <select
+                name="beer-style" id="beer-style"
+                class="custom-select">
+                <option disabled>Choose your favourite beer style</option>
+                @foreach($styles as $style)
+                    <option
+                        value="{{ $style->id }}"
+                        {{ $style->id == $user->favourite_style ? 'selected' : '' }}>
+                        {{ $style->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
         <input type="submit" value="Update profile" class="btn btn-primary">
     </form>
 </div>
