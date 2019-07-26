@@ -6,6 +6,7 @@
     <hr>
     <form action="{{ route('profileUpdate') }}" method="POST">
         @csrf
+        @include('inc.messages')
         <div class="form-group">
             <label for="name">Your name</label>
             <input type="text"

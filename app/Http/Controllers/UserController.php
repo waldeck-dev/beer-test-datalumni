@@ -33,7 +33,8 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'email' => 'email',
+            'name' => 'required',
+            'email' => 'required|email',
         ]);
 
         $user = $this->getUser();
@@ -43,7 +44,7 @@ class UserController extends Controller
         $user->favourite_style = $request->input('beer-style');
         $user->save();
 
-        return redirect()->route('profile');
+        return redirect()->route('profile')->with('success', 'Profile updated successfully!');
     }
 
     public function getUser() {
