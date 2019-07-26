@@ -28,7 +28,7 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->save();
 
-        return view('user.profile')->with('user', $user);
+        return redirect()->route('profile');
     }
 
     public function getUser() {
