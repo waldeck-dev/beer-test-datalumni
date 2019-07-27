@@ -56,9 +56,13 @@
                     <h5 class="card-title">{{ $comment->getUser()->name }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Posted on {{ $comment->created_at->format('d-m-Y') }}</h6>
                     <p class="card-text">{{ $comment->body }}</p>
+                    @if( $comment->user_id == Auth::user()->id )
+                        <a href="" class="card-link">Edit comment</a>
+                    @endif
                 </div>
             </div>
             @endforeach
+            <a href="" class="btn btn-success">Add new comment</a>
         </div>
     </div>
 </div>

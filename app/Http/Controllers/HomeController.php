@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use function GuzzleHttp\json_decode;
 
 use App\Comment;
@@ -28,15 +29,29 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Handle pagination
+        $page = 1;
+        if ( Input::get('page') ){
+            $page = Input::get('page');
+        }
 
+        // Request data from API
         $body = $this->client
                      ->request('GET', $this->beer_endpoint . 'beers', [
-                            'query' => ['per_page' => 12]
+                            'query' => [
+                                'page' => $page,
+                                'per_page' => 12
+                            ]
                        ])
                      ->getBody();
         $data = json_decode($body);
 
-        return view('home')->with('beers', $data);
+
+        return view('home')->with([
+            'beers' => $data,
+            'previous_page' => $page == 1 ? 'disabled' : $page - 1,
+            'next_page' => $page + 1
+        ]);
     }
 
     public function show($id) {
