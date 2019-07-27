@@ -18,7 +18,8 @@ Auth::routes();
 Route::get('/', function () {
     return redirect()->route('home');
 });
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/beers', 'HomeController@index')->name('home');
+Route::get('/beers/{id}', 'HomeController@show')->name('detail');
 
 
 // Profile
