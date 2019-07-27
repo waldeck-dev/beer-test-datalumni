@@ -42,5 +42,35 @@ class UsersTableSeeder extends Seeder
             'email' => 'a.thompson@mail.co',
             'password' => bcrypt('12345678'),
         ]);
+        DB::table('users')->insert([
+            'name' => 'Général Alcazar',
+            'email' => 'alcazar@mail.co',
+            'password' => bcrypt('12345678'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Johannes Müller',
+            'email' => 'j.muller@mail.co',
+            'password' => bcrypt('12345678'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Isidore Boullu',
+            'email' => 'i.boullu@mail.co',
+            'password' => bcrypt('12345678'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Igor Wagner',
+            'email' => 'i.wagner@mail.co',
+            'password' => bcrypt('12345678'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Halambique Nestor',
+            'email' => 'h.nestor@mail.co',
+            'password' => bcrypt('12345678'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Oliveira Da Figueira',
+            'email' => 'odf@mail.co',
+            'password' => bcrypt('12345678'),
+        ]);
     }
 }

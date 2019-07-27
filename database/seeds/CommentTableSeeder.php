@@ -13,12 +13,12 @@ class CommentTableSeeder extends Seeder
     public function run()
     {
         $count = 0;
-        while ($count < 15) {
+        while ($count < 500) {
 
             DB::table('comments')->insert([
                 'body' => $this->random_comment(random_int(10,80)),
-                'user_id' => random_int(1,6),
-                'beer_id' => random_int(1,12),
+                'user_id' => random_int(1,12),
+                'beer_id' => random_int(1,200),
                 'created_at' => date_create("2019-07-27"),
             ]);
 
