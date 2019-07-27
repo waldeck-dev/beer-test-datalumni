@@ -33,7 +33,9 @@
                                         <path d="M2 4 L30 4 30 22 16 22 8 29 8 22 2 22 Z"></path>
                                     </svg>
                                     <a href="/beers/{{ $beer->id }}#comments">
-                                        <span style="margin-left:0.5em;">3 comments</span>
+                                        <span style="margin-left:0.5em;">
+                                            {{ App\Comment::countComments($beer->id) }} comments
+                                        </span>
                                     </a>
                                 </p>
                             </div>

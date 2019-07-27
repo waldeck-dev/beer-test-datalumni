@@ -50,13 +50,15 @@
         <div class="col-md-8">
             <h3 id="comments">Comments</h3>
             <p>Tell us what you think of <strong>{{ $beer[0]->name }}</strong>?</p>
-            <div class="card">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
+            @foreach( $comments as $comment )
+            <div class="card" style="margin-bottom:0.5em;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $comment->getUser()->name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Posted on {{ $comment->created_at->format('d-m-Y') }}</h6>
+                    <p class="card-text">{{ $comment->body }}</p>
+                </div>
             </div>
+            @endforeach
         </div>
     </div>
 </div>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use function GuzzleHttp\json_decode;
 
+use App\Comment;
+
 class HomeController extends Controller
 {
     /**
@@ -28,10 +30,10 @@ class HomeController extends Controller
     {
 
         $body = $this->client
-                      ->request('GET', $this->beer_endpoint . 'beers', [
+                     ->request('GET', $this->beer_endpoint . 'beers', [
                             'query' => ['per_page' => 12]
                        ])
-                      ->getBody();
+                     ->getBody();
         $data = json_decode($body);
 
         return view('home')->with('beers', $data);
@@ -41,8 +43,12 @@ class HomeController extends Controller
         $body = $this->client
                      ->request('GET', $this->beer_endpoint . 'beers/' . $id)
                      ->getBody();
-        $data = json_decode($body);
+        $beer = json_decode($body);
 
-        return view('beer.details')->with('beer', $data);
+        $comments = Comment::where('beer_id', $id)->get();
+
+        return view('beer.details')->with(
+            compact('beer', 'comments')
+        );
     }
 }
