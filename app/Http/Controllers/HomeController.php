@@ -49,6 +49,7 @@ class HomeController extends Controller
 
         return view('home')->with([
             'beers' => $data,
+            'current_page' => $page,
             'previous_page' => $page == 1 ? 'disabled' : $page - 1,
             'next_page' => $page + 1
         ]);

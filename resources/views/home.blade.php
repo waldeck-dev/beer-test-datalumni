@@ -12,14 +12,14 @@
                 <div class="card">
                     <div class="row no-gutters">
                         <div class="col-md-4" style="padding:1em;">
-                            <a href="/{{ $beer->id }}">
+                            <a href="/beers/{{ $beer->id }}?page={{ $current_page }}">
                                 <img src="{{ $beer->image_url }}" alt="{{ $beer->name }}" class="card-img">
                             </a>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="/beers/{{ $beer->id }}">
+                                    <a href="/beers/{{ $beer->id }}?page={{ $current_page }}">
                                         <strong>{{ $beer->name }}</strong>
                                     </a>
                                 </h5>
