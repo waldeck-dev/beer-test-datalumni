@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="d-flex justify-content-between" style="margin-bottom:0.5em;">
                 <h3>Beer details</h3>
-                <a href="/beers?page={{ app('request')->input('page') }}" class="btn btn-secondary">
+                <a href="/beers?page={{ is_null(app('request')->input('page')) ? 1 : app('request')->input('page') }}" class="btn btn-secondary">
                     <svg class="i-caret-left" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                         <path d="M22 30 L6 16 22 2 Z"></path>
                     </svg>

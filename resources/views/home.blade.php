@@ -54,16 +54,21 @@
         <ul class="pagination">
             <li class="page-item {{ $previous_page }}">
                 <a href="beers?page={{ $previous_page }}" class="page-link">
-                    <svg class="i-caret-left" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <svg class="i-caret-left" viewBox="0 0 32 32" width="14" height="14" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                         <path d="M22 30 L6 16 22 2 Z"></path>
                     </svg>
                     Previous
                 </a>
             </li>
+            @foreach( range(1,12) as $page )
+                <li class="page-item {{ $page == app('request')->input('page') ? 'active' : '' }}">
+                    <a class="page-link" href="beers?page={{ $page }}">{{ $page }}</a>
+                </li>
+            @endforeach
             <li class="page-item {{ $next_page }}">
                 <a href="beers?page={{ $next_page }}" class="page-link">
                     Next
-                    <svg class="i-caret-right" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <svg class="i-caret-right" viewBox="0 0 32 32" width="14" height="14" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                         <path d="M10 30 L26 16 10 2 Z"></path>
                     </svg>
                 </a>
