@@ -34,6 +34,9 @@ class HomeController extends Controller
         if ( Input::get('page') ){
             $page = Input::get('page');
         }
+        if ( $page > 12 ) {
+            abort(404);
+        }
 
         // Request data from API
         $body = $this->client
@@ -50,8 +53,8 @@ class HomeController extends Controller
         return view('home')->with([
             'beers' => $data,
             'current_page' => $page,
-            'previous_page' => $page == 1 ? 'disabled' : $page - 1,
-            'next_page' => $page + 1
+            'previous_page' => $page <= 1 ? 'disabled' : $page - 1,
+            'next_page' => $page >= 12 ? 'disabled' : $page + 1
         ]);
     }
 
@@ -69,7 +72,7 @@ class HomeController extends Controller
     }
 
     public function random() {
-        $random_id = random_int(1,200);
+        $random_id = random_int(1,160);
         return redirect()->action('HomeController@show', ['id' => $random_id]);
     }
 }

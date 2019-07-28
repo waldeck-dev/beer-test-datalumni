@@ -60,7 +60,7 @@
                     Previous
                 </a>
             </li>
-            <li class="page-item">
+            <li class="page-item {{ $next_page }}">
                 <a href="beers?page={{ $next_page }}" class="page-link">
                     Next
                     <svg class="i-caret-right" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
