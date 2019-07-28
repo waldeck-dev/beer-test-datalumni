@@ -25,12 +25,16 @@ class Comment extends Model
     public static function commentPreview($id) {
         $body = Comment::find($id)->body;
         $words = explode(' ', $body);
-        $preview = [];
-        foreach (range(0,9) as $i) {
-            array_push($preview, $words[$i]);
+        if( count($words) > 9 ) {
+            $preview = [];
+            foreach (range(0,9) as $i) {
+                array_push($preview, $words[$i]);
+            }
+            $preview = implode(' ', $preview);
+            $preview .= '...';
+        } else {
+            $preview = $body;
         }
-        $preview = implode(' ', $preview);
-        $preview .= '...';
         return $preview;
     }
 }
