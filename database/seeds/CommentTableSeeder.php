@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+use function GuzzleHttp\json_decode;
+
 class CommentTableSeeder extends Seeder
 {
     /**
@@ -12,13 +14,32 @@ class CommentTableSeeder extends Seeder
      */
     public function run()
     {
+
+        $client = new \GuzzleHttp\Client();
+        $beer_names = [];
+        foreach ([1,2] as $page) {
+            $body = $client->request('GET', 'https://api.punkapi.com/v2/beers', [
+                'query' => [
+                    'page' => $page,
+                    'per_page' => 80
+                ]
+            ])->getBody();
+            $data = json_decode($body);
+
+            foreach ($data as $beer) {
+                $beer_names[$beer->id] = $beer->name;
+            }
+        }
+
         $count = 0;
         while ($count < 500) {
+            $beer_id = random_int(1,160);
 
             DB::table('comments')->insert([
                 'body' => $this->random_comment(random_int(10,80)),
                 'user_id' => random_int(1,12),
-                'beer_id' => random_int(1,200),
+                'beer_id' => $beer_id,
+                'beer_name' => $beer_names[$beer_id],
                 'created_at' => date_create("2019-07-27"),
             ]);
 

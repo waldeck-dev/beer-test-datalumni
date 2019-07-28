@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\BeerType;
 use App\BeerStyle;
+use App\Comment;
 
 
 class UserController extends Controller
@@ -26,6 +27,7 @@ class UserController extends Controller
             'user' => $user,
             'types' => BeerType::all(),
             'styles' => BeerStyle::all(),
+            'comments' => Comment::where('user_id', $user->id)->get()
         ]);
     }
 

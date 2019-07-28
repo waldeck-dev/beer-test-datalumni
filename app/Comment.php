@@ -20,4 +20,17 @@ class Comment extends Model
     public static function countComments($beer_id) {
         return Comment::where('beer_id', $beer_id)->count();
     }
+
+    // Display first 1à word of the given comment
+    public static function commentPreview($id) {
+        $body = Comment::find($id)->body;
+        $words = explode(' ', $body);
+        $preview = [];
+        foreach (range(0,9) as $i) {
+            array_push($preview, $words[$i]);
+        }
+        $preview = implode(' ', $preview);
+        $preview .= '...';
+        return $preview;
+    }
 }

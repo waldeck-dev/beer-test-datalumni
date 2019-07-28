@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->text('body');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('beer_id');
+            $table->string('beer_name');
             $table->timestamps();
         });
 
