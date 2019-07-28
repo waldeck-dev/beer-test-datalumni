@@ -32,7 +32,7 @@ class CommentTableSeeder extends Seeder
         }
 
         $count = 0;
-        while ($count < 500) {
+        while ($count < 400) {
             $beer_id = random_int(1,160);
 
             DB::table('comments')->insert([

@@ -12,14 +12,14 @@
                 <div class="card">
                     <div class="row no-gutters">
                         <div class="col-md-4" style="padding:1em;">
-                            <a href="/beers/{{ $beer->id }}?page={{ $current_page }}">
+                            <a href="{{ route('detail', [$beer->id, 'page' => $current_page]) }}">
                                 <img src="{{ $beer->image_url }}" alt="{{ $beer->name }}" class="card-img">
                             </a>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="/beers/{{ $beer->id }}?page={{ $current_page }}">
+                                    <a href="{{ route('detail', [$beer->id, 'page' => $current_page]) }}">
                                         <strong>{{ $beer->name }}</strong>
                                     </a>
                                 </h5>
@@ -36,7 +36,7 @@
                                     <svg class="i-msg" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
                                         <path d="M2 4 L30 4 30 22 16 22 8 29 8 22 2 22 Z"></path>
                                     </svg>
-                                    <a href="/beers/{{ $beer->id }}#comments">
+                                    <a href="{{ route('detail', [$beer->id, 'page' => $current_page]) }}#comments">
                                         <span style="margin-left:0.5em;">
                                             {{ App\Comment::countComments($beer->id) }} {{ str_plural('comment', App\Comment::countComments($beer->id)) }}
                                         </span>
@@ -53,7 +53,7 @@
         <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item {{ $previous_page }}">
-                <a href="beers?page={{ $previous_page }}" class="page-link">
+                <a href="{{ route('home', ['page' => $previous_page]) }}" class="page-link">
                     <svg class="i-caret-left" viewBox="0 0 32 32" width="14" height="14" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                         <path d="M22 30 L6 16 22 2 Z"></path>
                     </svg>
@@ -61,12 +61,12 @@
                 </a>
             </li>
             @foreach( range(1,12) as $page )
-                <li class="page-item {{ $page == app('request')->input('page') ? 'active' : '' }}">
-                    <a class="page-link" href="beers?page={{ $page }}">{{ $page }}</a>
+                <li class="page-item {{ $page == $current_page ? 'active' : '' }}">
+                    <a class="page-link" href="{{ route('home', ['page' => $page]) }}">{{ $page }}</a>
                 </li>
             @endforeach
             <li class="page-item {{ $next_page }}">
-                <a href="beers?page={{ $next_page }}" class="page-link">
+                <a href="{{ route('home', ['page' => $next_page]) }}" class="page-link">
                     Next
                     <svg class="i-caret-right" viewBox="0 0 32 32" width="14" height="14" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                         <path d="M10 30 L26 16 10 2 Z"></path>

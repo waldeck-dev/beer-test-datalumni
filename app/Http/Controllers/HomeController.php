@@ -61,7 +61,9 @@ class HomeController extends Controller
         ]);
     }
 
+    // Single beer details
     public function show($id) {
+        // Fetch beer data from API
         $body = $this->client
                      ->request('GET', $this->beer_endpoint . 'beers/' . $id)
                      ->getBody();
@@ -111,10 +113,12 @@ class HomeController extends Controller
         if ( $request->_method == 'POST' ) {
             $comment = new Comment;
             $comment->created_at = Carbon::now();
+            $message = 'New comment added succesfully!';
         } else {
             if ( Comment::find($comment_id) ) {
                 $comment = Comment::find($comment_id);
                 $comment->updated_at = Carbon::now();
+                $message = 'Comment updated succesfully!';
             } else {
                 abort(404);
             }
@@ -126,7 +130,8 @@ class HomeController extends Controller
         $comment->beer_name = $request->input('beer_name');
         $comment->save();
 
-        return redirect()->to(route('detail', [$beer_id]).'#comments');
+        return redirect()->to(route('detail', [$beer_id]).'#comments')
+                         ->with('success', $message);
     }
 
     // Delete comment
@@ -136,7 +141,8 @@ class HomeController extends Controller
             // Make sure this is user's comment
             if ( $comment->user_id == Auth::id() ) {
                 $comment->delete();
-                return redirect()->to(route('detail', [$beer_id]).'#comments');
+                return redirect()->to(route('detail', [$beer_id]).'#comments')
+                                 ->with('success', 'Comment deleted successfully!');
             } else {
                 abort(403, $comment->user_id . ' ' . Auth::id() . ' ' . $comment_id );
             }

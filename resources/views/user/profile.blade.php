@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Your email address</label>
-                    <input type="text"
+                    <input type="email"
                         name="email" id="email"
                         value="{{ $user->email }}"
                         placeholder="Your email address"
