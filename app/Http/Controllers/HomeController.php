@@ -144,7 +144,7 @@ class HomeController extends Controller
                 return redirect()->to(route('detail', [$beer_id]).'#comments')
                                  ->with('success', 'Comment deleted successfully!');
             } else {
-                abort(403, $comment->user_id . ' ' . Auth::id() . ' ' . $comment_id );
+                abort(403);
             }
         } else {
             abort(404);
