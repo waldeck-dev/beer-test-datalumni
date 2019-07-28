@@ -24,5 +24,15 @@
             <input type="submit" value="Post comment" class="btn btn-primary">
             <a href="{{ route('detail', [$beer_id]) }}" class="btn btn-secondary">Cancel</a>
         </form>
+        @if( $method == 'PUT' )
+            <form
+                action="{{ route('delete_comment', [$beer_id, $comment->id]) }}"
+                method="POST"
+                class="mt-3">
+                @csrf
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="Delete Comment" class="btn btn-danger">
+            </form>
+        @endif
     </div>
 @endsection

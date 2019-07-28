@@ -128,4 +128,20 @@ class HomeController extends Controller
 
         return redirect()->to(route('detail', [$beer_id]).'#comments');
     }
+
+    // Delete comment
+    public function commentDelete($beer_id, $comment_id) {
+        $comment = Comment::find($comment_id);
+        if ( $comment ) {
+            // Make sure this is user's comment
+            if ( $comment->user_id == Auth::id() ) {
+                $comment->delete();
+                return redirect()->to(route('detail', [$beer_id]).'#comments');
+            } else {
+                abort(403, $comment->user_id . ' ' . Auth::id() . ' ' . $comment_id );
+            }
+        } else {
+            abort(404);
+        }
+    }
 }
