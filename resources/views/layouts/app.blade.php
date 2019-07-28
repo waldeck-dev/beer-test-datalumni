@@ -37,6 +37,9 @@
                         <li class="nav-item">
                             <a href="{{ route('home') }}" class="nav-link">All beers</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('random') }}" class="nav-link">Random beer</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

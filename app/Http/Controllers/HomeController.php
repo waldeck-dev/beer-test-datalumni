@@ -67,4 +67,9 @@ class HomeController extends Controller
             compact('beer', 'comments')
         );
     }
+
+    public function random() {
+        $random_id = random_int(1,200);
+        return redirect()->action('HomeController@show', ['id' => $random_id]);
+    }
 }

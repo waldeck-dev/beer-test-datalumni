@@ -19,6 +19,7 @@ Route::get('/', function () {
     return redirect()->route('home');
 });
 Route::get('/beers', 'HomeController@index')->name('home');
+Route::get('/beers/random', 'HomeController@random')->name('random');
 Route::get('/beers/{id}', 'HomeController@show')->name('detail');
 
 
