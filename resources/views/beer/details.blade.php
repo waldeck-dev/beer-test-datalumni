@@ -58,6 +58,7 @@
         <div class="col-md-8">
             <h3 id="comments">Comments</h3>
             <p>Tell us what you think of <strong>{{ $beer[0]->name }}</strong>?</p>
+            @include('inc.messages')
             @if( count($comments) > 0 )
                 @foreach( $comments as $comment )
                 <div class="card" style="margin-bottom:0.5em;">
@@ -66,7 +67,7 @@
                         <h6 class="card-subtitle mb-2 text-muted">Posted on {{ $comment->created_at->format('d-m-Y') }}</h6>
                         <p class="card-text">{{ $comment->body }}</p>
                         @if( $comment->user_id == Auth::user()->id )
-                            <a href="" class="card-link">Edit comment</a>
+                            <a href="{{ route('update_comment', [$beer[0]->id, $comment->id]) }}" class="card-link">Edit comment</a>
                         @endif
                     </div>
                 </div>

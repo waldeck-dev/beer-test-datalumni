@@ -60,7 +60,7 @@
             </form>
         </div>
         <div class="col-md-6">
-            <h3>Beer your commented</h3>
+            <h3>Beers your commented</h3>
             @if( count($comments) > 0 )
                 <div class="list-group ">
                     @foreach( $comments as $comment )
