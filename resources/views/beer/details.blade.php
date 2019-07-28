@@ -79,7 +79,7 @@
                     </div>
                 </div>
             @endif
-            <a href="" class="btn btn-success">Add new comment</a>
+            <a href="/beers/{{ $comment->beer_id }}/comment/new" class="btn btn-success">Add new comment</a>
         </div>
     </div>
 </div>

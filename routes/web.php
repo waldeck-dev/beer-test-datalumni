@@ -20,6 +20,15 @@ Route::get('/', function () {
 });
 Route::get('/beers', 'HomeController@index')->name('home');
 Route::get('/beers/random', 'HomeController@random')->name('random');
+
+
+Route::get('/beers/{id}/comment', function($id) {
+    return redirect()->route('new_comment', [$id]);
+});
+Route::get('/beers/{id}/comment/new', 'HomeController@commentNew')->name('new_comment');
+Route::post('/beers/{id}/comment/post', 'HomeController@commentPost')->name('post_comment');
+
+
 Route::get('/beers/{id}', 'HomeController@show')->name('detail');
 
 

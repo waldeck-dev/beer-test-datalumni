@@ -46,7 +46,7 @@ class UserController extends Controller
         $user->favourite_style = $request->input('beer-style');
         $user->save();
 
-        return redirect()->route('profile')->with('success', 'Profile updated successfully!');
+        return redirect()->route('profile')->with('success', 'Comment posted successfully!');
     }
 
     public function getUser() {
