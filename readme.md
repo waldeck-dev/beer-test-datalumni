@@ -3,13 +3,13 @@ This repository holds a proposed solution for Datalumni's coding test :heavy_che
 
 ## Quick start - No installation required
 You don't care about the code and you just want to see the result?
-:star2: See it live here : []()
+:star2: See it live here : [http://beer-test.waldeck.pw](http://beer-test.waldeck.pw)
 
 ## Complete Installation
 This section describes installation process to run this project from source :package:
 1. Clone this repository :
 ```
-git clone git@github.com:waldeck-dev/beer-test-datalumni.git
+git clone https://github.com/waldeck-dev/beer-test-datalumni.git
 cd beer-test-datalumni/
 ```
 
@@ -24,7 +24,7 @@ composer install
 mysql -u <username> -p
 CREATE DATABASE beer;
 ```
-(replace '<username>' with your actual db username)
+(replace '< username >' with your actual db username)
 
 4. Copy .env file and edit it:
 ```
